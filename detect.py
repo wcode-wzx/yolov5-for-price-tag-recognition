@@ -1,5 +1,5 @@
 import argparse
-import time,os
+import time,os,sys
 from pathlib import Path
 
 import cv2
@@ -156,10 +156,19 @@ def detect(save_img=True):
 
             # 设置保存图片/视频 有label则保存
             vid_path, vid_writer = None, None
-            if save_img & aa == 1:
+            try:
+                if save_img & aa == 1:
                 #if dataset.mode == 'image':
-                cv2.imwrite(save_path, im0)
-        
+                    cv2.imwrite(save_path, im0)
+            except OSError as err:
+                print("OS error: {0}".format(err))
+            except ValueError:
+                print("Could not convert data to an integer.")
+            except IOError:
+                print ("Error: 没有找到文件或读取文件失败")
+            except:
+                print("Unexpected error:", sys.exc_info()[0])
+
     print(f'Done. ({time.time() - t0:.3f}s)')
     # 打印总时间
 

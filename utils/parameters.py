@@ -2,7 +2,7 @@
 
 class opt(object):
     def __init__(self):
-        self.source = 'data/images'
+        self.source = 'data/images/'
         self.agnostic_nms = False 
         self.augment = False
         self.classes = None 

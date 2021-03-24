@@ -1,5 +1,4 @@
 import cv2,os
-from main import a_path
 
 def bianhuan():
     def access_pixels(img):
@@ -7,14 +6,15 @@ def bianhuan():
         height = img.shape[0]
         weight = img.shape[1]
 
-        #for row in range(height):    #遍历高
-        a = b = row = 0    
-        for col in range(weight):  #遍历宽
-            dd = img.item(row,col,0) #遍历像素点的值
-            if dd <=128:
-                a +=1
-            else:
-                b +=1
+           
+        a = b = 0    
+        for row in range(0,3): #遍历高
+            for col in range(weight):  #遍历宽
+                dd = img.item(row,col,0) #遍历像素点的值
+                if dd <=128:
+                    a +=1
+                else:
+                    b +=1
         
         #print(a,b)
         for row in range(height):    #遍历高
@@ -33,12 +33,12 @@ def bianhuan():
         return img
 
     def readname():
-        rname = os.listdir(a_path.images_path) 
+        rname = os.listdir('runs/detect/exp/images/') 
         return rname
 
     rname = readname()
     for i in rname:
-        r_path = a_path.images_path+str(i)
+        r_path = 'runs/detect/exp/images/'+str(i)
         #print(r_path)
         img = cv2.imread(r_path)
         img0 = huiduhua(img)
@@ -47,4 +47,4 @@ def bianhuan():
         img = access_pixels(img)
         cv2.imwrite(r_path, img)
 
-#detect_b()
+#bianhuan()
