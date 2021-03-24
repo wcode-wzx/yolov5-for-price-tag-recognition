@@ -48,7 +48,7 @@ def shu():
         with open(a_path.price_path+str(l).split('.')[0]+'.'+str(y)+".txt","w") as f:
                 f.write(y)
         with open("runs/detect/exp/price.txt","a") as f:
-                y = 'E:/vsProject/YOLOv5/yolov5_detect/data/images/'+str(l).split('.')[0]+'.jpg'+'\n'
+                y = '![yuantu](E:\\vsProject\YOLOv5\yolov5_detect\data\images\\'+str(l).split('.')[0]+'.jpg)'+'\n'+'\n'+'![price](E:\\vsProject\YOLOv5\yolov5_detect\\runs\detect\exp\images\\'+str(l).split('.')[0]+'.jpg)'+'\n'+'\n'+y+'\n'+'\n'
                 f.write(y)  #
         
 
