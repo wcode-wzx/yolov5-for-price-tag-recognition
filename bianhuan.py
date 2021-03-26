@@ -8,13 +8,14 @@ def bianhuan():
         weight = img.shape[1]
 
         #for row in range(height):    #遍历高
-        a = b = row = 0    
-        for col in range(weight):  #遍历宽
-            dd = img.item(row,col,0) #遍历像素点的值
-            if dd <=128:
-                a +=1
-            else:
-                b +=1
+        a = b = 0    
+        for row in range(0,3):
+            for col in range(weight):  #遍历宽
+                dd = img.item(row,col,0) #遍历像素点的值
+                if dd <=128:
+                    a +=1
+                else:
+                    b +=1
         
         #print(a,b)
         for row in range(height):    #遍历高

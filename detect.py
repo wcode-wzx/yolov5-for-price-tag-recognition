@@ -134,7 +134,7 @@ def detect(save_img=True):
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         # 在原图上画框
                         aa = 1
-                        print(xywh)
+                        #print(xywh)
                         line = (cls, *xywh, conf) if opt.save_conf else (cls, *xywh)  # label format
                         sp = im0.shape
                         #获取坐标
