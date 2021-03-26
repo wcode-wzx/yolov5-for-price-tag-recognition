@@ -100,13 +100,13 @@ def detect_s():
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         # 在原图上画框
                         aa = 1
-                        print(xywh)
+                        #print(xywh)
                         line = (cls, *xywh, conf) if opt.save_conf else (cls, *xywh)  # label format
                        
                         with open(txt_path + '.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
                 
-            print(f'{s}Done. ({t2 - t1:.3f}s)')
+            #print(f'{s}Done. ({t2 - t1:.3f}s)')
 
             # Stream results
             # 如果设置展示，则show图片/视频
@@ -117,14 +117,6 @@ def detect_s():
             # 设置保存图片/视频 有label则保存
             vid_path, vid_writer = None, None
        
-    print(f'Done. ({time.time() - t0:.3f}s)')
+    #print(f'Done. ({time.time() - t0:.3f}s)')
     # 打印总时间
-
-
-# if __name__ == '__main__':
-    
-#     #打印参数
-#     opt.list_all_member()
-
-#     detect_s()
     

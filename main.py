@@ -1,7 +1,4 @@
-from detect import *
-from detect_s import *
-from bianhuan import *
-import shutil 
+import shutil , os
 
 mm = []
 price = []
@@ -13,9 +10,13 @@ class a_path():
     price_path = 'runs/detect/exp/price/'
 
 def l_clear():
-    
-    shutil.rmtree('runs\detect\exp')  
-    os.mkdir('runs\detect\exp') 
+    if os.path.exists('data/cache_p'):
+        shutil.rmtree('data/cache_p')
+        os.mkdir('data/cache_p')
+    else:
+        os.mkdir('data/cache_p') 
+    shutil.rmtree('runs/detect/exp') 
+    os.mkdir('runs/detect/exp') 
     os.mkdir(a_path.images_path) 
     os.mkdir(a_path.labels_path) 
     os.mkdir(a_path.price_path) 
@@ -45,23 +46,4 @@ def shu():
         #print(mm,*price)
         mm.clear()
         price.clear()
-        with open(a_path.price_path+str(l).split('.')[0]+'.'+str(y)+".txt","w") as f:
-                f.write(y)
-        with open("runs/detect/exp/price.txt","a") as f:
-                y = '![yuantu](E:\\vsProject\YOLOv5\yolov5_detect\data\images\\'+str(l).split('.')[0]+'.jpg)'+'\n'+'\n'+'![price](E:\\vsProject\YOLOv5\yolov5_detect\\runs\detect\exp\images\\'+str(l).split('.')[0]+'.jpg)'+'\n'+'\n'+y+'\n'+'\n'
-                f.write(y)  #
-        
-
-if __name__ == '__main__':
-    #每次运行前清空exp文件夹
-    l_clear()
-    #定位、切割
-    detect()
-    #图像变换
-    bianhuan()
-    #识别
-    detect_s()
-    #输出price
-    shu()
-
-    print("************complete**************")
+        return y

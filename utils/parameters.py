@@ -1,8 +1,20 @@
-#参数设置
+import urllib
+import urllib.request
+
+def get_url_picture(img_src):
+    try:
+        request = urllib.request.Request(img_src)
+        response = urllib.request.urlopen(request)
+        get_img = response.read()
+        with open('data/cache_p/'+img_src.split('/')[-1],'wb') as fp:
+            fp.write(get_img)
+        print('图片加载完成')
+    except:
+        print('访问空')
 
 class opt(object):
     def __init__(self):
-        self.source = 'data/images/'
+        self.source = 'data/cache_p'
         self.agnostic_nms = False 
         self.augment = False
         self.classes = None 
@@ -42,6 +54,3 @@ class opt2(object):
     def list_all_member(self):
         for name,value in vars(self).items():
             print('%s=%s'%(name,value))
-
-
-#opt = opt2()
