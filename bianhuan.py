@@ -1,4 +1,5 @@
 import cv2,os
+from utils.parameters import a_path
 
 def bianhuan():
     def access_pixels(img):
@@ -33,12 +34,12 @@ def bianhuan():
         return img
 
     def readname():
-        rname = os.listdir('runs/detect/exp/images/') 
+        rname = os.listdir(a_path.images_path) 
         return rname
 
     rname = readname()
     for i in rname:
-        r_path = 'runs/detect/exp/images/'+str(i)
+        r_path = a_path.images_path+str(i)
         #print(r_path)
         img = cv2.imread(r_path)
         img0 = huiduhua(img)

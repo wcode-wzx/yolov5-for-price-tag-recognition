@@ -1,6 +1,12 @@
 import urllib
 import urllib.request
 
+class a_path():
+    images_path = 'runs/detect/exp/images/'
+    get_path = 'data/cache_p'
+    labels_path = 'runs/detect/exp/labels/'
+    price_path = 'runs/detect/exp/price/'
+
 def get_url_picture(img_src):
     try:
         request = urllib.request.Request(img_src)
@@ -29,9 +35,9 @@ class opt(object):
         self.save_txt=True
         self.view_img=False
         self.weights='weights/dingwei.pt'
-    def list_all_member(self):
-        for name,value in vars(self).items():
-            print('%s=%s'%(name,value))
+    # def list_all_member(self):
+    #     for name,value in vars(self).items():
+    #         print('%s=%s'%(name,value))
 
 
 class opt2(object):
@@ -51,6 +57,7 @@ class opt2(object):
         self.save_txt=True
         self.view_img=False
         self.weights='weights/shibie.pt'
-    def list_all_member(self):
-        for name,value in vars(self).items():
-            print('%s=%s'%(name,value))
+    # def list_all_member(self):
+    #     for name,value in vars(self).items():
+    #         print('%s=%s'%(name,value))
+

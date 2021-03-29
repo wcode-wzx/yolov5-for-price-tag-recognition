@@ -1,5 +1,5 @@
 import argparse
-import time,os
+import os
 from pathlib import Path
 
 import cv2
@@ -7,7 +7,7 @@ import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
 
-from utils.parameters import opt2
+from utils.parameters import opt2, a_path
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -51,7 +51,6 @@ def detect_s():
     if device.type != 'cpu':
         model(torch.zeros(1, 3, imgsz, imgsz).to(device).type_as(next(model.parameters())))  # run once
     # 进行一次前向推理,测试程序是否正常
-    t0 = time.time()
     
     for path, img, im0s, vid_cap in dataset:
         img = torch.from_numpy(img).to(device)
@@ -63,12 +62,9 @@ def detect_s():
             img = img.unsqueeze(0)
 
         # Inference
-        t1 = time_synchronized()
-
         pred = model(img, augment=opt.augment)[0]
 
         pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
-        t2 = time_synchronized()
 
         # 对每一张图片作处理
         for i, det in enumerate(pred):  # detections per image
@@ -77,7 +73,7 @@ def detect_s():
 
             p = Path(p)  # to Path
 
-            txt_path = "runs/detect/exp/labels/" +str(p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            txt_path = a_path.labels_path+str(p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             # 设置打印信息(图片长宽)
             s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
@@ -115,8 +111,4 @@ def detect_s():
                 cv2.waitKey(1)  # 1 millisecond
 
             # 设置保存图片/视频 有label则保存
-            vid_path, vid_writer = None, None
-       
-    #print(f'Done. ({time.time() - t0:.3f}s)')
-    # 打印总时间
-    
+            #vid_path, vid_writer = None, None

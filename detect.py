@@ -7,7 +7,7 @@ import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
 
-from utils.parameters import opt
+from utils.parameters import opt, a_path
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -79,7 +79,7 @@ def detect(save_img=True):
             p = Path(p)  # to Path
             # 设置保存图片/视频的路径
         
-            save_path = "runs/detect/exp/images/"+str(p.name)  # img.jpg
+            save_path = a_path.images_path+str(p.name)  # img.jpg
             
             s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
@@ -136,6 +136,3 @@ def detect(save_img=True):
                 print ("Error: 没有找到文件或读取文件失败")
             except:
                 print("Unexpected error:", sys.exc_info()[0])
-
-    #print(f'Done. ({time.time() - t0:.3f}s)')
-    # 打印总时间

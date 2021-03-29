@@ -1,25 +1,21 @@
 import shutil , os
+from utils.parameters import a_path
 
 mm = []
 price = []
 
-class a_path():
-    images_path = 'runs/detect/exp/images/'
-    cut_path = ''
-    labels_path = 'runs/detect/exp/labels/'
-    price_path = 'runs/detect/exp/price/'
+def cclear(path):
+    if os.path.exists(path):
+        shutil.rmtree(path)
+        os.mkdir(path)
+    else:
+        os.mkdir(path)
 
 def l_clear():
-    if os.path.exists('data/cache_p'):
-        shutil.rmtree('data/cache_p')
-        os.mkdir('data/cache_p')
-    else:
-        os.mkdir('data/cache_p') 
-    shutil.rmtree('runs/detect/exp') 
-    os.mkdir('runs/detect/exp') 
-    os.mkdir(a_path.images_path) 
-    os.mkdir(a_path.labels_path) 
-    os.mkdir(a_path.price_path) 
+    cclear(a_path.get_path)
+    cclear(a_path.images_path)
+    cclear(a_path.labels_path)
+    cclear(a_path.price_path)
 
 def rr_name():
     rname = os.listdir(a_path.labels_path) 
@@ -30,7 +26,7 @@ def shu():
     for l in rrname:
         #print(l)
         # Open file   
-        fileHandler  =  open  (a_path.labels_path + str(l),  "r")
+        fileHandler  =  open(a_path.labels_path + str(l),  "r")
         # Get list of all lines in file
         listOfLines  =  fileHandler.readlines()
         # Close file
@@ -46,4 +42,5 @@ def shu():
         #print(mm,*price)
         mm.clear()
         price.clear()
+
         return y
