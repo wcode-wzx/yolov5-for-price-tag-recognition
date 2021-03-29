@@ -1,26 +1,15 @@
 import urllib
 import urllib.request
 
-url = True
-
-def get_url_picture(img_src_list):
-    try:
-        for each in img_src_list:
-            request = urllib.request.Request(each)
-            response = urllib.request.urlopen(request)
-            get_img = response.read()
-            with open('data/cache_p/'+each.split('/')[-1],'wb') as fp:
-                fp.write(get_img)
-        print('图片加载完成')
-    except:
-        print('访问空')
+class a_path():
+    images_path = 'runs/detect/exp/images/'
+    cut_path = ''
+    labels_path = 'runs/detect/exp/labels/'
+    price_path = 'runs/detect/exp/price/'
 
 class opt(object):
     def __init__(self):
-        if url:
-            self.source = 'data/cache_p'
-        else:
-            self.source = 'data/images'
+        self.source = 'data/images'
         self.agnostic_nms = False 
         self.augment = False
         self.classes = None 
@@ -61,5 +50,3 @@ class opt2(object):
         for name,value in vars(self).items():
             print('%s=%s'%(name,value))
 
-
-#opt = opt2()

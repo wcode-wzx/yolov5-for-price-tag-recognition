@@ -7,7 +7,7 @@ import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
 
-from utils.parameters import opt2
+from utils.parameters import opt2, a_path
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -77,7 +77,7 @@ def detect_s():
 
             p = Path(p)  # to Path
 
-            txt_path = "runs/detect/exp/labels/" +str(p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            txt_path = a_path.labels_path+str(p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             # 设置打印信息(图片长宽)
             s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
