@@ -13,7 +13,8 @@ def hello_world(path):
     #path='https://img14.360buyimg.com/n0/jfs/t1/159901/3/11391/351369/6046d0d9E8e2127d6/e2a03621f7bfe40b.jpg'
     #每次运行前清空exp文件夹
     if path.startswith(('https://', 'http://')):
-        
+        #clear cache
+        l_clear()
         #获取图片
         get_url_picture(path)
         #定位、切割
@@ -25,8 +26,7 @@ def hello_world(path):
         #输出price
         x = shu()
         y = path.split('/')[-1]
-        #clear cache
-        l_clear()
+        
     else:
         x = None
         y = None
