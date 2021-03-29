@@ -16,8 +16,8 @@
 ![101165352](readme/101165352.jpg)
 ![101165352_1](readme/101165352_1.jpg)
 - 101165352.599.txt :599
-## 1.2更新可读取url图片并返回价格
-- 更改utils/parameters.py url=Ture
+## ~~ 1.2更新可读取url图片并返回价格 ~~
+- ~~ 更改utils/parameters.py url=Ture~~
 
 ## 1.3 用flask进行封装
 https://github.com/wcode-wzx/yolov5-for-price-tag-recognition/tree/server
